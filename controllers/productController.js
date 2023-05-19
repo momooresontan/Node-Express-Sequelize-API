@@ -8,7 +8,7 @@ const Review = db.reviews;
 
 // 1) create product
 
-const addProduct = async (req, res) => {
+export const addProduct = async (req, res) => {
   let info = {
     title: req.body.title,
     price: req.body.price,
@@ -26,7 +26,10 @@ const addProduct = async (req, res) => {
 
 //2) Get all products
 
-const getAllProducts = async (req, res) => {
+export const getAllProducts = async (
+  req,
+  res
+) => {
   let products = await Product.findAll({
     //attributes: ['title', 'price'],
   });
@@ -35,7 +38,7 @@ const getAllProducts = async (req, res) => {
 
 //3) Get one product
 
-const getOneProduct = async (req, res) => {
+export const getOneProduct = async (req, res) => {
   let id = req.params.id;
   let product = await Product.findOne({
     where: { id: id },
@@ -45,10 +48,32 @@ const getOneProduct = async (req, res) => {
 
 //4) Update product
 
-const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   let id = req.params.id;
   const product = await Product.update(req.body, {
     where: { id: id },
   });
   res.status(200).send(product);
+};
+
+//5) Delete product
+
+export const deleteProduct = async (req, res) => {
+  let id = req.params.id;
+  await Product.destroy({ where: { id: id } });
+  res
+    .status(200)
+    .send('Product has been deleted');
+};
+
+//6)Get Published product
+
+export const getPublishedProduct = async (
+  req,
+  res
+) => {
+  const products = await Product.findAll({
+    where: { published: true },
+  });
+  res.status(200).send(products);
 };
