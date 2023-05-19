@@ -1,4 +1,4 @@
-const db = require('./models');
+const db = require('../models');
 
 //create main Model
 const Product = db.products;
@@ -8,7 +8,7 @@ const Review = db.reviews;
 
 // 1) create product
 
-export const addProduct = async (req, res) => {
+exports.addProduct = async (req, res) => {
   let info = {
     title: req.body.title,
     price: req.body.price,
@@ -26,10 +26,7 @@ export const addProduct = async (req, res) => {
 
 //2) Get all products
 
-export const getAllProducts = async (
-  req,
-  res
-) => {
+exports.getAllProducts = async (req, res) => {
   let products = await Product.findAll({
     //attributes: ['title', 'price'],
   });
@@ -38,7 +35,7 @@ export const getAllProducts = async (
 
 //3) Get one product
 
-export const getOneProduct = async (req, res) => {
+exports.getOneProduct = async (req, res) => {
   let id = req.params.id;
   let product = await Product.findOne({
     where: { id: id },
@@ -48,7 +45,7 @@ export const getOneProduct = async (req, res) => {
 
 //4) Update product
 
-export const updateProduct = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   let id = req.params.id;
   const product = await Product.update(req.body, {
     where: { id: id },
@@ -58,7 +55,7 @@ export const updateProduct = async (req, res) => {
 
 //5) Delete product
 
-export const deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   let id = req.params.id;
   await Product.destroy({ where: { id: id } });
   res
@@ -68,7 +65,7 @@ export const deleteProduct = async (req, res) => {
 
 //6)Get Published product
 
-export const getPublishedProduct = async (
+exports.getPublishedProduct = async (
   req,
   res
 ) => {

@@ -10,7 +10,7 @@ router.post(
 
 router.get(
   '/getAllProducts',
-  productController.getAllProduct
+  productController.getAllProducts
 );
 
 router.get(
