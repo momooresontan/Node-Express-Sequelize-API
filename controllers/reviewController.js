@@ -38,3 +38,10 @@ exports.updateReview = async (req, res) => {
   });
   res.status(200).send(review);
 };
+
+// 5) Delete Review
+exports.deleteReview = async (req, res) => {
+  const id = req.params.id;
+  await Review.destroy({ where: { id } });
+  res.status(200).send('Review has been deleted');
+};
