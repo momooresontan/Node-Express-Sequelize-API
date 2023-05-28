@@ -13,9 +13,7 @@ exports.addProduct = async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     description: req.body.description,
-    published: req.body.published
-      ? req.body.published
-      : false,
+    published: req.body.published ? req.body.published : false,
   };
 
   const product = await Product.create(info);
@@ -58,17 +56,12 @@ exports.updateProduct = async (req, res) => {
 exports.deleteProduct = async (req, res) => {
   let id = req.params.id;
   await Product.destroy({ where: { id: id } });
-  res
-    .status(200)
-    .send('Product has been deleted');
+  res.status(200).send('Product has been deleted');
 };
 
 //6) Get Published product
 
-exports.getPublishedProduct = async (
-  req,
-  res
-) => {
+exports.getPublishedProduct = async (req, res) => {
   const products = await Product.findAll({
     where: { published: true },
   });
@@ -78,5 +71,14 @@ exports.getPublishedProduct = async (
 // 7) Connect 1:M relation Product & Reviews
 
 exports.getProductReviews = async (req, res) => {
-  const data = 
-}
+  //const id = req.params.id;
+  const data = await Product.findAll({
+    include: [
+      {
+        model: Review,
+        as: 'review',
+      },
+    ],
+    where: { id: 2 },
+  });
+};

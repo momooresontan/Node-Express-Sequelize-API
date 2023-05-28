@@ -11,8 +11,11 @@ router.get('/getAllProducts', productController.getAllProducts);
 router.get('/publishedProduct', productController.getPublishedProduct);
 
 // Review url and controller
-router.post('/addReview', reviewController.addReview);
-router.get('/allReviews', reviewController.getAllReviews);
+router.post('/:id/addReview', reviewController.addReview);
+router.get('allReviews', reviewController.getAllReviews);
+
+// Get product reviews
+router.get('/getProductReviews', productController.getProductReviews);
 
 router.get('/:id', productController.getOneProduct);
 
