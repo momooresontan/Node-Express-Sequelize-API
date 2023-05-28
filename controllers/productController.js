@@ -63,7 +63,7 @@ exports.deleteProduct = async (req, res) => {
     .send('Product has been deleted');
 };
 
-//6)Get Published product
+//6) Get Published product
 
 exports.getPublishedProduct = async (
   req,
@@ -74,3 +74,9 @@ exports.getPublishedProduct = async (
   });
   res.status(200).send(products);
 };
+
+// 7) Connect 1:M relation Product & Reviews
+
+exports.getProductReviews = async (req, res) => {
+  const data = 
+}
