@@ -17,7 +17,7 @@ exports.addProduct = async (req, res) => {
   };
 
   const product = await Product.create(info);
-  res.status(200).send(product);
+  res.status(201).send(product);
 
   console.log(product);
 };
